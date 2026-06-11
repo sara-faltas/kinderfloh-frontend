@@ -63,7 +63,7 @@ const EventDetails = () => {
         eventId: Number(id),
       });
 
-      setMessage("Reservation created successfully 🎉");
+      setMessage("Reservation created successfully 🎉 Kindly wait confirmation from the organizer");
 
       setFormData({
         parentName: "",

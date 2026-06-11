@@ -182,3 +182,26 @@
     border-right-color: var(--border);
   }
 }
+
+.event-card {
+  width: 100%;
+  background-color: #fcf8f7;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 2px;
+  color:rgb(113, 49, 51);
+}
+
+.event-text {
+  font-size: 0.85rem;
+  line-height: 1.25;
+  margin-bottom: 2px;
+  color:rgb(134, 69, 71);
+}

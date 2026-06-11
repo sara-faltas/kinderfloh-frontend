@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import { Form,Container, Row, Col, Card } from "react-bootstrap";
+import { Form,Container, Row, Col} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import EventCard from "../components/EventCards";
 
 
 type Event = {
@@ -36,6 +37,11 @@ const Home = () => {
   event.location.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
+  if(!events) return (
+    <div>Loading...</div>
+  )
+
+  
   return (
     <Container fluid className="p-4">
       <Row className="mb-4 align-items-center">
@@ -70,24 +76,7 @@ const Home = () => {
           <p className="text-muted">No events found.</p>
         ) : (
           filteredEvents.map((event) => (
-            <Col md={4} key={event.id} className="mb-3">
-              <Card>
-                <Card.Body>
-                  <Card.Title>{event.title}</Card.Title>
-                  <Card.Text>{event.description}</Card.Text>
-                  <Card.Text>📍 {event.location}</Card.Text>
-                  <Card.Text>
-                    🗓 {new Date(event.date).toDateString()}
-                  </Card.Text>
-                  <Card.Text>
-                    🎟 Tables: {event.availableTables ?? event.totalTables}
-                  </Card.Text>
-                  <Link to={`/reserve-event/${event.id}`} className="btn btn-primary">
-                    View Details
-                  </Link>
-                </Card.Body>
-              </Card>
-            </Col>
+           <EventCard key={event.id} event={event} />
           ))
         )}
       </Row>
