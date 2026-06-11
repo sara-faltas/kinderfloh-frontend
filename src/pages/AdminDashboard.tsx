@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import { Container, Row, Col, Card, Button, Table } from "react-bootstrap";
+import { Container, Row, Col, Card, Button} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 type Event = {
@@ -17,6 +17,7 @@ type Reservation = {
   email: string;
   tableNumber: number;
   event: {
+    id: number;
     title: string;
   };
 };
@@ -55,17 +56,20 @@ const AdminDashboard = () => {
     }
   };
 
-  const groupedReservations = reservations.reduce((acc: any, r) => {
-    const eventTitle = r.event.title;
+  const groupedReservations = reservations.reduce(
+    (acc: Record<string, Reservation[]>, r) => {
+      const eventTitle = r.event.title;
 
-    if (!acc[eventTitle]) {
-      acc[eventTitle] = [];
-    }
+      if (!acc[eventTitle]) {
+        acc[eventTitle] = [];
+      }
 
-    acc[eventTitle].push(r);
+      acc[eventTitle].push(r);
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {} as Record<string, Reservation[]>,
+  );
 
   return (
     <Container fluid className="p-4">
@@ -113,7 +117,8 @@ const AdminDashboard = () => {
           <Card className="shadow-sm">
             <Card.Body>
               <h6>Active Tables Booked</h6>
-              <h3>{reservations.reduce((acc, r) => acc + 1, 0)}</h3>
+              {/* <h3>{reservations.reduce((acc, r) => acc + 1, 0)}</h3> */}
+           <h3>{reservations.length}</h3>
             </Card.Body>
           </Card>
         </Col>
@@ -180,12 +185,12 @@ const AdminDashboard = () => {
                       className="text-primary"
                       style={{ cursor: "pointer" }}
                       onClick={() => {
-                        const event = reservations.find(
+                        const evt = reservations.find(
                           (r) => r.event.title === eventTitle,
                         )?.event;
 
-                        if (event) {
-                          window.location.href = `/events/${event.id}`;
+                        if (evt && typeof evt.id === "number") {
+                          window.location.href = `/events/${evt.id}`;
                         }
                       }}
                     >
