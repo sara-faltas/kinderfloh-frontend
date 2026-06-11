@@ -3,7 +3,6 @@ import api from "../api/axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Container, Card, Button, Spinner, Form, Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 type Event = {
   id: number;
