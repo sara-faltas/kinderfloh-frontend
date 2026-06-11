@@ -15,6 +15,7 @@ type Event = {
   availableTables: number;
 };
 
+
 const EventDetails = () => {
   const { id } = useParams();
 
