@@ -19,7 +19,6 @@ type Event = {
 const EventDetails = () => {
   const { id } = useParams();
 
-  const navigate = useNavigate();
   const [event, setEvent] = useState<Event | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [message, setMessage] = useState("");
