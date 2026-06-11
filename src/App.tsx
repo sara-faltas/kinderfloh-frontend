@@ -5,6 +5,7 @@ import EventDetails from "./pages/EventDetails";
 import CreateEvent from "./pages/CreateEvent";
 import EditEvent from "./pages/EditEvent";
 import AdminDashboard from "./pages/AdminDashboard";
+import EventReservation from "./pages/EventReservation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/edit-events/:id" element={<EditEvent />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/reserve-event/:id" element={<EventReservation/>} />
       </Routes>
     </BrowserRouter>
   );

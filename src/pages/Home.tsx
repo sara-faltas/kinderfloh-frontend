@@ -82,7 +82,7 @@ const Home = () => {
                   <Card.Text>
                     🎟 Tables: {event.availableTables ?? event.totalTables}
                   </Card.Text>
-                  <Link to={`/events/${event.id}`} className="btn btn-primary">
+                  <Link to={`/reserve-event/${event.id}`} className="btn btn-primary">
                     View Details
                   </Link>
                 </Card.Body>

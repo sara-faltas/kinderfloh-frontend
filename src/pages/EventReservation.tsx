@@ -70,7 +70,7 @@ const EventDetails = () => {
         email: "",
         tableNumber: "",
       });
-       setShowForm(false);
+      setShowForm(false);
       fetchEvent();
     } catch (error) {
       console.log(error);
@@ -82,21 +82,7 @@ const EventDetails = () => {
     return <Spinner animation="border" />;
   }
 
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this event?",
-    );
-
-    if (!confirmDelete) return;
-
-    try {
-      await api.delete(`/events/${id}`);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   return (
     <Container className="mt-5">
       <Card>
@@ -110,11 +96,8 @@ const EventDetails = () => {
           <Card.Text>📅 {new Date(event.date).toDateString()}</Card.Text>
 
           <Card.Text>🪑 Available tables: {event.availableTables}</Card.Text>
-          <Link to={`/admin`} className="btn btn-secondary ms-2">
+          <Link to={`/`} className="btn btn-secondary ms-2">
             Back
-          </Link>
-          <Link to={`/edit-events/${event.id}`} className="btn btn-success ms-2">
-            Edit Event
           </Link>
         
 
@@ -123,9 +106,7 @@ const EventDetails = () => {
           {!showForm && (
             <Button onClick={() => setShowForm(true)}className="ms-2" >Reserve a table</Button>
           )}
-            <Button variant="danger" onClick={handleDelete} className="ms-2">
-            Delete Event
-          </Button>
+          
 
           {showForm && (
             <Form className="mt-4" onSubmit={handleReservation}>

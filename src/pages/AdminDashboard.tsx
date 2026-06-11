@@ -56,6 +56,20 @@ const AdminDashboard = () => {
     }
   };
 
+   const deleteReservation = async (id: number) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this event?",
+    );
+
+    if (!confirmDelete) return;
+    try {
+      await api.delete(`/reservations/${id}`);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const groupedReservations = reservations.reduce(
     (acc: Record<string, Reservation[]>, r) => {
       const eventTitle = r.event.title;
@@ -206,6 +220,13 @@ const AdminDashboard = () => {
                         <strong>{r.parentName}</strong>
                         <div className="small text-muted">{r.email}</div>
                         <div>🪑 Table {r.tableNumber}</div>
+                        <Button
+                        size="sm"
+                        variant="outline-danger"
+                        onClick={() => deleteReservation(r.id)}
+                      >
+                        Delete Reservation
+                      </Button>
                       </div>
                     ))}
                   </div>
